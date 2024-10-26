@@ -9,3 +9,29 @@ GET http://127.0.0.1:8000/hello/User
 Accept: application/json
 
 ###
+
+GET http://127.0.0.1:8000/producao/2004
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/comercializacao/2004
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/exportacao/2004/tipo5
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/importacao/2023/subopt_01
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8000/processamento/2004/tipo1
+Accept: application/json
+
+###
+
