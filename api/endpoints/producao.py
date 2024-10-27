@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 from core.request_site import RequestSite
+from core.transtormation_data import TransformationData
 
 router = APIRouter(
     prefix="/producao",
@@ -9,7 +10,14 @@ router = APIRouter(
 
 @router.get("/{ano}")
 async def read_producao(ano: int):
+
     request_site = RequestSite()
+
     request_site.ano = ano
     request_site.opcao = "opt_02"
-    return request_site.get()
+
+    transformer = TransformationData()
+    response = request_site.get()
+    dado = transformer.transform(response)
+
+    return dado
