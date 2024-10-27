@@ -16,7 +16,7 @@ class RequestSite:
             self.url += f"&subopcao={self.subopcao}"
 
         headers = {"Accept": "application/json"}
-        response = requests.get(self.url, headers=headers)
+        response = requests.get(self.url) #, headers=headers
 
         if response.status_code == HTTPStatus.OK:
             return response.text

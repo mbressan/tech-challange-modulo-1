@@ -8,7 +8,11 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
-@router.get("/{ano}/{subopcao}")
+@router.get("/{ano}/{subopcao}",
+            description="Requisitar dados de Importação por <b>ano e subtipo</b>",
+            tags=["Importação"],
+            summary="Obter dados dos anos de Importação"
+            )
 async def read_importacao(ano: int, subopcao: str):
 
     request_site = RequestSite()

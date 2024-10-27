@@ -4,11 +4,15 @@ from core.transtormation_data import TransformationData
 
 router = APIRouter(
     prefix="/exportacao",
-    tags=["exportacao"],
+    tags=["Exportação"],
     responses={404: {"description": "Not found"}},
 )
 
-@router.get("/{ano}/{subopcao}")
+@router.get("/{ano}/{subopcao}",
+            description = "Requisitar dados de Exportação por <b>ano e subtipo</b>",
+            tags = ["Exportação"],
+            summary = "Obter dados dos anos de Exportação"
+)
 async def read_exportacao(ano: int, subopcao: str):
 
     request_site = RequestSite()

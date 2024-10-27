@@ -27,7 +27,8 @@ class TransformationData:
 
         # Cria um DataFrame pandas com os dados
         df = pd.DataFrame(data, columns=colunas)
+        json_data = df.to_json(orient='index', force_ascii=False)
 
-        return df
+        return json_data
 
 

@@ -4,7 +4,7 @@ from core.transtormation_data import TransformationData
 
 router = APIRouter(
     prefix="/processamento",
-    tags=["processamento"],
+    tags=["Processamento"],
     responses={404: {"description": "Not found"}},
 )
 
@@ -19,7 +19,11 @@ Sem classificacao       = "subopt_04"
 """
 
 
-@router.get("/{ano}/{subopcao}")
+@router.get("/{ano}/{subopcao}",
+            description="Requisitar dados de Processamento por <b>ano e subtipo</b>",
+            tags=["Processamento"],
+            summary="Obter dados dos anos de Processamento"
+            )
 async def read_processamento(ano: int, subopcao: str):
 
     request_site = RequestSite()
