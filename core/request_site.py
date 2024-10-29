@@ -10,15 +10,18 @@ class RequestSite:
 
 
     def get(self):
+        try:
+            self.url = f"http://vitibrasil.cnpuv.embrapa.br/index.php?ano={self.ano}&opcao={self.opcao}"
+            if self.subopcao:
+                self.url += f"&subopcao={self.subopcao}"
 
-        self.url = f"http://vitibrasil.cnpuv.embrapa.br/index.php?ano={self.ano}&opcao={self.opcao}"
-        if self.subopcao:
-            self.url += f"&subopcao={self.subopcao}"
+            headers = {"Accept": "application/json"}
+            response = requests.get(self.url, headers=headers)
 
-        headers = {"Accept": "application/json"}
-        response = requests.get(self.url) #, headers=headers
+            if response.status_code == HTTPStatus.OK:
+                return response.text
+            else:
+                return f"Error: {response.status_code}"
 
-        if response.status_code == HTTPStatus.OK:
-            return response.text
-        else:
-            return f"Error: {response.status_code}"
+        except requests.RequestException as e:
+            return f"O Request falhou: {e}"

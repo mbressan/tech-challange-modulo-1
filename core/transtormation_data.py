@@ -1,3 +1,5 @@
+import json
+
 from bs4 import BeautifulSoup
 import pandas as pd
 
@@ -27,8 +29,8 @@ class TransformationData:
 
         # Cria um DataFrame pandas com os dados
         df = pd.DataFrame(data, columns=colunas)
-        json_data = df.to_json(orient='index', force_ascii=False)
-
+        dados = df.to_dict(orient='dict') # df.to_json(orient='records', force_ascii=False)
+        json_data = dados.to_json(orient='records', force_ascii=False)
         return json_data
 
 

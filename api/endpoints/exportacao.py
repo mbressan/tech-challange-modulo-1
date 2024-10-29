@@ -1,6 +1,8 @@
-from fastapi import APIRouter
+from typing import Annotated
+from fastapi import APIRouter, Path
 from core.request_site import RequestSite
 from core.transtormation_data import TransformationData
+from models.base_model import ExportacaoSubModel, ExportacaoModel
 
 router = APIRouter(
     prefix="/exportacao",
@@ -13,13 +15,17 @@ router = APIRouter(
             tags = ["Exportação"],
             summary = "Obter dados dos anos de Exportação"
 )
-async def read_exportacao(ano: int, subopcao: str):
-
+async def get_exportacao(
+    ano: Annotated[int, Path(title="Selecione o ano", ge=1970, le=2023)],
+    subopcao: Annotated[
+        (ExportacaoSubModel | None), Path(title="Selecione a subopção")]
+):
+    opcao = ExportacaoModel("Exportação")
     request_site = RequestSite()
 
     request_site.ano = ano
-    request_site.opcao = "opt_06"
-    request_site.subopcao = subopcao
+    request_site.opcao = str(opcao.name)
+    request_site.subopcao = str(subopcao.name)
 
     transformer = TransformationData()
     response = request_site.get()
