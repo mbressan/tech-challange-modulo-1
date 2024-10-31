@@ -13,7 +13,7 @@ from models.base_model import ImportacaoSubModel, ImportacaoModel
 
 router = APIRouter(
     prefix="/importacao",
-    tags=["importacao"],
+    tags=["Importação"],
     responses={404: {"description": "Not found"}},
 )
 
