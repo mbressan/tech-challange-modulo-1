@@ -1,3 +1,10 @@
+"""
+Este módulo define as rotas e handlers para os dados de Importação.
+
+Rotas:
+    - /importacao/{ano}/{subopcao}: Obter dados dos anos de Importação por subtipo.
+"""
+
 from typing import Annotated
 from fastapi import APIRouter, Path
 from core.request_site import RequestSite
@@ -20,7 +27,16 @@ async def get_importacao(
         subopcao: Annotated[
             (ImportacaoSubModel | None), Path(title="Selecione a subopção")]
 ):
+    """
+    Handler para obter dados de Importação por ano e subtipo.
 
+    Parâmetros:
+        - ano (int): Ano para o qual os dados de Importação são requisitados.
+        - subopcao (ImportacaoSubModel): Subtipo de Importação.
+
+    Retorna:
+        - JSON: Dados de Importação transformados.
+    """
     opcao = ImportacaoModel("Importação")
     request_site = RequestSite()
 

@@ -1,3 +1,10 @@
+"""
+Este módulo define as rotas e handlers para os dados de Exportação.
+
+Rotas:
+    - /exportacao/{ano}/{subopcao}: Obter dados dos anos de Exportação por subtipo.
+"""
+
 from typing import Annotated
 from fastapi import APIRouter, Path
 from core.request_site import RequestSite
@@ -20,6 +27,16 @@ async def get_exportacao(
     subopcao: Annotated[
         (ExportacaoSubModel | None), Path(title="Selecione a subopção")]
 ):
+    """
+    Handler para obter dados de Exportação por ano e subtipo.
+
+    Parâmetros:
+        - ano (int): Ano para o qual os dados de Exportação são requisitados.
+        - subopcao (ExportacaoSubModel): Subtipo de Exportação.
+
+    Retorna:
+        - JSON: Dados de Exportação transformados.
+    """
     opcao = ExportacaoModel("Exportação")
     request_site = RequestSite()
 

@@ -1,3 +1,10 @@
+"""
+Este módulo define as rotas e handlers para os dados de Processamento.
+
+Rotas:
+    - /processamento/{ano}/{subopcao}: Obter dados dos anos de Processamento por subtipo.
+"""
+
 from typing import Annotated
 from fastapi import APIRouter, Path
 from core.request_site import RequestSite
@@ -20,7 +27,16 @@ async def get_processamento(
         subopcao: Annotated[
             (ProcessamentoSubModel | None), Path(title="Selecione a subopção")
         ]):
+    """
+    Handler para obter dados de Processamento por ano e subtipo.
 
+    Parâmetros:
+        - ano (int): Ano para o qual os dados de Processamento são requisitados.
+        - subopcao (ProcessamentoSubModel): Subtipo de Processamento.
+
+    Retorna:
+        - JSON: Dados de Processamento transformados.
+    """
     opcao = ProcessamentoModel("Processamento")
 
     request_site = RequestSite()

@@ -1,3 +1,10 @@
+"""
+Este módulo define as rotas e handlers para os dados de Produção.
+
+Rotas:
+    - /producao/{ano}: Obter dados dos anos de Produção.
+"""
+
 from typing import Annotated
 from fastapi import APIRouter, Path
 from core.request_site import RequestSite
@@ -18,7 +25,15 @@ router = APIRouter(
 async def get_producao(
         ano: Annotated[int, Path(title='Selecione o ano', ge=1970, le=2023)]
 ):
+    """
+    Handler para obter dados de Produção por ano.
 
+    Parâmetros:
+        - ano (int): Ano para o qual os dados de Produção são requisitados.
+
+    Retorna:
+        - JSON: Dados de Produção transformados.
+    """
     opcao = ProducaoModel('Produção')
     request_site = RequestSite()
 

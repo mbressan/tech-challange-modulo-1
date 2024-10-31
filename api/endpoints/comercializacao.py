@@ -1,3 +1,10 @@
+"""
+Este módulo define as rotas e handlers para os dados de Comercialização.
+
+Rotas:
+    - /comercializacao/{ano}: Obter dados dos anos de Comercialização.
+"""
+
 from typing import Annotated
 from fastapi import APIRouter, Path
 from core.request_site import RequestSite
@@ -18,6 +25,15 @@ router = APIRouter(
 async def get_comercializacao(
         ano: Annotated[int, Path(title='Selecione o ano', ge=1970, le=2023)]
 ):
+    """
+    Handler para obter dados de Comercialização por ano.
+
+    Parâmetros:
+        - ano (int): Ano para o qual os dados de Comercialização são requisitados.
+
+    Retorna:
+        - JSON: Dados de Comercialização transformados.
+    """
     opcao = ComercializacaoModel("Comercialização")
     request_site = RequestSite()
 
